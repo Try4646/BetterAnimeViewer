@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title1 }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .download-all-button {
+            margin-bottom: 20px;
+        }
+
+        .download-all-button button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .anime-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .anime-list li {
+            margin-bottom: 10px;
+        }
+        .anime-list a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+        .anime-list a:hover {
+            text-decoration: underline;
+        }
+        .anime-list button {
+            padding: 2px 20px;
+            border: none;
+            border-radius: 12px;
+            background-color: #ff6f61;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .anime-list a.bastard {
+            padding: 0.3px 20px;
+            border: none;
+            border-radius: 12px;
+            background-color: #ff6f61;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title1 }}</h1>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form action="/search" method="GET">
+            <input type="text" name="query" placeholder="Search for an anime..." value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+
+    <!-- Anime List -->
+    <ul class="anime-list">
+        {% for anime in animes %}
+            <li>
+                <a href="/anime/{{ anime.url }}" target="_blank">{{ anime.title }}</a>
+                <a class="bastard" href="/downloadall/{{ anime.url }}" class="home-button">Download All</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

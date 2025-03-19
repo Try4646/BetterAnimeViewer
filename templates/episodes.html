@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episodes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6f61;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .home-button {
+            background-color: #ff6f61;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: #e65c54;
+        }
+        .episode-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .episode-list li {
+            margin-bottom: 10px;
+        }
+        .episode-list a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+        .episode-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Episodes</h1>
+    <a href="/" class="home-button">Home</a>
+
+    <!-- Episode List -->
+    <ul class="episode-list">
+        {% for episode in episodes %}
+            <li>
+                <a href="/episode/{{ episode.url }}" target="_blank">{{ episode.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

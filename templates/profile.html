@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Profile</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .profile-header {
+            text-align: center;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .username {
+            color: #ff0000;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            margin: 0;
+        }
+
+        .watched-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .watched-item {
+            background-color: #2a2a2a;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 4px solid #ff0000;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+
+        .watched-item:hover {
+            transform: translateX(10px);
+            background-color: #3a3a3a;
+        }
+
+        .anime-title {
+            color: #ff4444;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .episode-info {
+            color: #aaaaaa;
+            font-size: 0.9em;
+        }
+
+        .timestamp {
+            color: #888888;
+            font-size: 0.8em;
+            float: right;
+        }
+
+        .no-watched {
+            text-align: center;
+            color: #ff4444;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1 class="username">{{ user.username }}</h1>
+        </div>
+
+        <h2>Recently Watched</h2>
+
+        {% if user.watched %}
+            <ul class="watched-list">
+                {% for entry in user.watched|reverse %}
+                <li class="watched-item">
+                    <div class="anime-title">{{ entry.anime }}</div>
+                    <div class="episode-info">
+                        Season {{ entry.season }} • Episode {{ entry.episode }}
+                        <span class="timestamp">{{ entry.timestamp|datetimeformat }}</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="no-watched">No watched episodes yet</div>
+        {% endif %}
+    </div>
+</body>
+</html>
