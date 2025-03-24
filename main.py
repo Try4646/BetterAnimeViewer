@@ -11,7 +11,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 
-app.secret_key = 'niggersinParis69420'
+app.secret_key = '' #lol
 
 @app.template_filter('datetimeformat')
 def datetimeformat(value):
