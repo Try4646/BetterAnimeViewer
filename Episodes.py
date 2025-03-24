@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from curl_cffi import requests
 
 def get_episodes_for_anime(anime_url):
-    # Configure headers
     print("->getepisodesfornanime")
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
@@ -14,12 +13,7 @@ def get_episodes_for_anime(anime_url):
         "Connection": "keep-alive",
     }
 
-    # Set cookies (update cf_clearance if needed)
-    cookies = {
-        "wordpress_test_cookie": "WP%20Cookie%20check;",
-        "wordpress_logged_in_52ae307e0b9e736a7dbf74030de2e01a": "airstrike5040%40gmail.com%7C1743112208%7CDdu33PG0wAXDy4zxEwCZOhLrcQSiiaCOoJLkdkL45j5%7Cfaff545bffa0d56cf612d36b75ab2aad0d166f82a28eab02461990222195092f",
-        "wordpress_sec_52ae307e0b9e736a7dbf74030de2e01a": "airstrike5040%40gmail.com%7C1743112208%7CDdu33PG0wAXDy4zxEwCZOhLrcQSiiaCOoJLkdkL45j5%7Cec2e25fd67993cf49b2cb6ea07a1e5bf2a48ebb410c490aa4b471fbe86a78289",
-        "kndctr_8AD56F28618A50850A495FB6_AdobeOrg_identity": "CiYxMDA2NzIzNjQ5MzUzMDk2MTcxMjE4NDM0OTgzMTkyMDU3MDU5NFIRCPO--9mzMhgBKgRJUkwxMAPwAfO--9mzMg=="
+    cookies = { #Cookies Here i just leaked mine but idfc go to wcopremium log in and get cookies this is illegal i think idfk
         }
 
     try:
@@ -42,10 +36,8 @@ def get_episodes_for_anime(anime_url):
         return []
     elif response.status_code == 200:
         print("did that shit?")
-    # Parse with BeautifulSoup
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find episode links
     episode_links = soup.select('div#sidebar_right3 a')
     # print(response.text)
     episodes = []
